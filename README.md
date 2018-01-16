@@ -45,10 +45,10 @@ Java
 
 
 ## 이원준
-# 연구실가계부
+### 연구실가계부
 
 
-# Display
+#### Display
 
 1.가계부확인     ->(1)
 2.가계부추가     ->(2-0)
@@ -92,14 +92,14 @@ Java
 
 
 ****
-# Data
+#### Data
 int AM  // 총 잔액
 int 1M  // 이원준 잔액
 int 2M  // 임하슬린 잔액
 int UM // 사용금액
 string x // 비고
 
-# Function
+#### Function
 func0 : AM = M+-UM;
 func1 : 1M = M+-UM;
 func2 : 2M = M+-UM;
