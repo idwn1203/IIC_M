@@ -56,34 +56,38 @@ Java
 #Display
 1. 명단
 2. 신규
-3. 삭제
+3. 수정
+4. 삭제
 0. 종료
 
 명단
-1. 전체
-2. 수정
-3. 삭제
 
-수정 : 이름 검색해서
 
 신규
 1. 이름
 2. 학번
 3. 분류
-4. 등록일
 
-삭제
+수정 : 학번 검색해서
+1. 이름
+2. 학번
+3. 분류
+
+삭제 : 학번 검색해서
+
+
 
 #Data
 char name //학생이름
-int number //학번
-int date //등록일
+int num //학번
 char grade //분류
-int num //총 학생 수
+int total //총 학생 수
 
 #Function
-func1 : find students strcmp()
-func2 : delete students , num--;
-func3 : insert students , num++;
+find : find students strcmp()
+delete : delete students , num--;
+insert : insert students , num++;
+change : change student info
+print : print all students info
 
 ## 임하슬린
