@@ -130,7 +130,7 @@ func2 : 2M = M+-UM;
 삭제 : 학번 검색해서
 
 
-
+////***8
 #Data
 char name //학생이름
 int num //학번
