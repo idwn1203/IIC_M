@@ -44,15 +44,13 @@ Java
 연구비 총액
 
 
-## 이원준
 ### 연구실가계부
 
 
 #### Display
 
-1.가계부확인   
-2.가계부추가   
-
+1.가계부확인
+2.가계부추가
 <hr/>
 
 (1)
@@ -88,16 +86,16 @@ Java
 
 ****
 #### Data
-int AM  // 총 잔액  
-int 1M  // 이원준 잔액  
-int 2M  // 임하슬린 잔액  
-int UM // 사용금액  
-string x // 비고  
+int AM  // 총 잔액
+int 1M  // 이원준 잔액
+int 2M  // 임하슬린 잔액
+int UM // 사용금액
+string x // 비고
 
 #### Function
-func0 : AM = M+-UM;  
-func1 : 1M = M+-UM;  
-func2 : 2M = M+-UM;  
+func0 : AM = M+-UM;
+func1 : 1M = M+-UM;
+func2 : 2M = M+-UM;
 
 ## 안해린
 연구실 인원 관리부 요구사항
