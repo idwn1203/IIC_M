@@ -24,9 +24,9 @@ struct Money{
 * enum 변수는 접두어 e를 붙이고, 내부변수는 대문자로 쓴다.
 ```c
 enum drink {
-SEVENUP,
-COKE,
-MILK,
+  SEVENUP,
+  COKE,
+  MILK,
 ...
 };
 drink eDrink;
