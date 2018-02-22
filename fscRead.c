@@ -7,11 +7,17 @@ FILE *fsc;
 void fscRead(scList* SC) {
 
 	scData scE;
+<<<<<<< HEAD
 	scNode* scTemp = SC->head;
+=======
+	scNode* scTemp = (scNode*)malloc(sizeof(scNode));
+	scTemp= SC->head;
+>>>>>>> scFileio
 	int i = 0;
 
 	fsc = fopen("sc.txt", "r");
 
+<<<<<<< HEAD
 
 	while (1) {
 
@@ -25,6 +31,20 @@ void fscRead(scList* SC) {
 		fscanf(fsc, "%s %s %s %s %s %s", scE.num, scE.year, scE.month, scE.day, scE.txt, scE.name);
 		
 		 //파일 끝이면 break
+=======
+	if (fsc == NULL) {
+		printf("\nfopen error\n");
+		SC->total = 0;
+		return;
+	}
+	while (1) {
+
+		
+		
+		fscanf(fsc, "%s %s %s %s %s %s ", scE.num, scE.year, scE.month, scE.day, scE.txt, scE.name);
+		
+		if (feof(fsc) != 0) break; //파일 끝이면 break
+>>>>>>> scFileio
 		
 		strcpy(scTemp->info.num, scE.num);
 		strcpy(scTemp->info.year, scE.year);
