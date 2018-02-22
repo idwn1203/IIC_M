@@ -26,8 +26,6 @@ scList *createSC() {
 	return SC;
 }
 
-
-
 int main() {
 	char sw; //switch
 	char password[len]; //password
