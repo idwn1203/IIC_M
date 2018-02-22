@@ -9,6 +9,7 @@
 void aMode(stList* ST, scList* SC);
 void mMode(stList* ST, scList* SC);
 void sMode(stList* ST, scList* SC);
+
 stList* createST() {
 	stList* ST = (stList*)malloc(sizeof(stList));
 	ST->head = NULL;
@@ -32,6 +33,9 @@ int main() {
 	char password[len]; //password
 	stList*ST = createST();
 	scList*SC = createSC();
+
+	fscRead(SC);
+	//fstRead(ST);
 
 	do {
 		system("cls");		printf("\n0. exit");
@@ -69,6 +73,9 @@ int main() {
 			break;
 		}
 	} while (sw != '0');
+
+	fscWrite(SC);
+	//fstWrite(ST);
 
 	return 0;
 }
