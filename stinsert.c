@@ -1,33 +1,45 @@
 #include "common.h"
-#include "data.h"
 #include "scData.h"
 #include "stData.h"
 
-int stinsert(stList* list, stNode* man) {
-	int i; //roop
-	stNode*temp; //temp
-	temp = list->head;
+int stInsert(stList* ST, stData manE) {
+	int i = 0;
+	stNode* stITemp = (stNode*)malloc(sizeof(stNode));
+	stNode*man = (stNode*)malloc(sizeof(stNode));
+	memset(man, 0, sizeof(stNode));
 
-	for (i = 0; i < list->total; i++) {
-		if (man->Einfo.name == temp->Einfo.name) {
+	//man노드에 manE의 이름학번 추가
+	strcpy(man->Einfo.name, manE.name);
+	strcpy(man->Einfo.stnum, manE.stnum);
+	
+
+	if (ST->total != 0) {
+		stITemp = ST->head;
+	}
+
+
+	//리스트에 manE의 학번과 일치하는 학번 있는지 검색
+	while (i < ST->total) {
+		if (strcmp(stITemp->Einfo.stnum, manE.stnum) == 0) {
 			return 1;
 		}
-		else break;
-	}
-
-	temp = temp->link;
-	if (list->front == NULL) {
-		list->haed = man;
-		list->tail = man;
-
+		stITemp = stITemp->link;
+		i++;
+	}//while
+	
+	
+	
+	if (ST->total == 0) {
+		ST->head = man;
+		ST->tail = man;
+		ST->total++;
 	}
 	else {
-		list->tail->link = man;
-		list->tail = man;
+		ST->tail->link = man;
+		ST->tail = man;
+		ST->total++;
 	}
-	total++;
+	
 	return 0;
-
-
 
 }

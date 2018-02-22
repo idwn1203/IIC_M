@@ -1,30 +1,34 @@
 #include "common.h"
-#include "data.h"
 #include "scData.h"
 #include "stData.h"
 
-int scinsert(scList* list, stNode* man) {
-	int i; //roop
-	scNode*temp; //temp
-	temp = list->head;
+void scInsert(scList* SC, scData scE) {
 
-	while (temp->link != NULL) {
-		if (man->info.num == temp->info.num) {
-			return 1;
-		}
-	}
+	scNode* scITemp = (scNode*)malloc(sizeof(scNode));
+	scNode*man = (scNode*)malloc(sizeof(scNode));
+	memset(man, 0, sizeof(scNode));
 
-	temp = temp->link;
-	if (list->front == NULL) {
-		list->haed = man;
-		list->tail = man;
+	strcpy(man->info.year, scE.year);
+	strcpy(man->info.month, scE.month);
+	strcpy(man->info.day, scE.day);
+	strcpy(man->info.txt, scE.txt);
+	strcpy(man->info.name, scE.name);
+	strcpy(man->info.num, scE.num);
 
-	}
+	if (SC->total != 0) {
+		scITemp = SC->head;
+	}//IF
+
+	if (SC->total == 0) {
+		SC->head = man;
+		SC->tail = man;
+		SC->total++;
+	}//IF
 	else {
-		list->tail->link = man;
-		list->tail = man;
-	}
+		SC->tail->link = man;
+		SC->tail = man;
+		SC->total++;
+	}//else
 
-	return 0;
 
 }
