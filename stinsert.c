@@ -2,11 +2,16 @@
 #include "scData.h"
 #include "stData.h"
 
-int stInsert(stList* ST, stData manE) {
+FILE *fp;
+char *f_name = "std.txt";
+
+int stInsert(stList* ST, stData manE, FILE *fp) {
 	int i = 0;
 	stNode* stITemp = (stNode*)malloc(sizeof(stNode));
 	stNode*man = (stNode*)malloc(sizeof(stNode));
 	memset(man, 0, sizeof(stNode));
+
+	fp = fopen(f_name, "a");
 
 	//man노드에 manE의 이름학번 추가
 	strcpy(man->Einfo.name, manE.name);
@@ -39,7 +44,10 @@ int stInsert(stList* ST, stData manE) {
 		ST->tail = man;
 		ST->total++;
 	}
-	
+	fprintf(fp, "%s %s\n", man->Einfo.name, man->Einfo.stnum);
+	//fwrite(&manE, sizeof(manE), 1, fp);
+	fclose(fp);
+
 	return 0;
 
 }

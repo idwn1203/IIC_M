@@ -9,7 +9,6 @@
 void aMode(stList* ST, scList* SC);
 void mMode(stList* ST, scList* SC);
 void sMode(stList* ST, scList* SC);
-
 stList* createST() {
 	stList* ST = (stList*)malloc(sizeof(stList));
 	ST->head = NULL;
@@ -25,6 +24,7 @@ scList *createSC() {
 	SC->total = 0;
 	return SC;
 }
+
 
 
 int main() {

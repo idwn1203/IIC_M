@@ -2,11 +2,16 @@
 #include "scData.h"
 #include "stData.h"
 
+FILE *fp;
+
+
 void scInsert(scList* SC, scData scE) {
 
 	scNode* scITemp = (scNode*)malloc(sizeof(scNode));
 	scNode*man = (scNode*)malloc(sizeof(scNode));
 	memset(man, 0, sizeof(scNode));
+
+	fp = fopen("sc.txt", "a");
 
 	strcpy(man->info.year, scE.year);
 	strcpy(man->info.month, scE.month);
@@ -29,6 +34,8 @@ void scInsert(scList* SC, scData scE) {
 		SC->tail = man;
 		SC->total++;
 	}//else
-
+	fprintf(fp, "%s %s %s %s %s %s\n", man->info.year, man->info.month, man->info.day, man->info.txt, man->info.name, man->info.num);
+	//fwrite(&manE, sizeof(manE), 1, fp);
+	fclose(fp);
 
 }

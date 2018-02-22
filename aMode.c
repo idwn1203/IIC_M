@@ -3,6 +3,7 @@
 #include "common.h"
 
 
+
 void aMode(stList*ST, scList*SC) {
 	char asw; //amode switch
 	char exit; //exit
@@ -22,8 +23,7 @@ void aMode(stList*ST, scList*SC) {
 	int count = 0;
 	char anum[150];
 
-	FILE *fp;
-	char *f_name = "std.txt";
+	
 
 	do {
 
@@ -50,9 +50,11 @@ void aMode(stList*ST, scList*SC) {
 		switch (asw) {
 		case '1': //view all students
 			if (ST->total == 0) {
+				ftPrint(ST);
 				printf("\nList is empty\n");
 			}
 			else {
+				ftPrint(ST);
 				stTemp = ST->head;
 				for (i = 0; i < ST->total; i++) {
 					printf("%d", i);
@@ -94,6 +96,13 @@ void aMode(stList*ST, scList*SC) {
 						strcpy(manO.regiDate, stTemp->Oinfo.regiDate);
 						strcpy(manO.drive, stTemp->Oinfo.drive);
 
+						strcpy(objO.monitor, stTemp->Minfo.monitor);
+						strcpy(objO.monidate, stTemp->Minfo.monidate);
+						strcpy(objO.mouse, stTemp->Minfo.mouse);
+						strcpy(objO.mousdate, stTemp->Minfo.mousdate);
+						strcpy(objO.keyboard, stTemp->Minfo.keyboard);
+						strcpy(objO.keydate, stTemp->Minfo.keydate);
+
 						break;
 					}
 					stTemp = stTemp->link;
@@ -111,6 +120,13 @@ void aMode(stList*ST, scList*SC) {
 					printf("\nGraduation: %s", manO.graduation);
 					printf("\nRegistration Date: %s", manO.regiDate);
 					printf("\nDrive: %s", manO.drive);
+					printf("\n\nobject\n");
+					printf("\nmonitor: %s", objO.monitor);
+					printf("\nmonidate: %s", objO.monidate);
+					printf("\nmouse: %s", objO.mouse);
+					printf("\nmousdate: %s", objO.mousdate);
+					printf("\nkeyboard: %s", objO.keyboard);
+					printf("\nkeydate: %s", objO.keydate);
 				}
 			}
 
@@ -148,10 +164,23 @@ void aMode(stList*ST, scList*SC) {
 				scanf("%s", manO.mail);
 				printf("\nGraduation: ");
 				scanf("%s", manO.graduation);
-				printf("\nRegistration Date:");
+				printf("\nRegistration Date: ");
 				scanf("%s", manO.regiDate);
-				printf("\nDrive:");
+				printf("\nDrive: ");
 				scanf("%s", manO.drive);
+
+				printf("\nmonitor: ");
+				scanf("%s", objO.monitor);
+				printf("\nmonidate: ");
+				scanf("%s", objO.monidate);
+				printf("\nmouse: ");
+				scanf("%s", objO.mouse);
+				printf("\nmousdate: ");
+				scanf("%s", objO.mousdate);
+				printf("\nkeyboard: ");
+				scanf("%s", objO.keyboard);
+				printf("\nkeydate: ");
+				scanf("%s", objO.keydate);
 				i = stModify(ST, manE, manO);
 			}
 
@@ -185,6 +214,14 @@ void aMode(stList*ST, scList*SC) {
 						strcpy(manO.regiDate, stTemp->Oinfo.regiDate);
 						strcpy(manO.drive, stTemp->Oinfo.drive);
 
+						strcpy(objO.monitor, stTemp->Minfo.monitor);
+						strcpy(objO.monidate, stTemp->Minfo.monidate);
+						strcpy(objO.mouse, stTemp->Minfo.mouse);
+						strcpy(objO.mousdate, stTemp->Minfo.mousdate);
+						strcpy(objO.keyboard, stTemp->Minfo.keyboard);
+						strcpy(objO.keydate, stTemp->Minfo.keydate);
+
+
 						break;
 					}
 					stTemp = stTemp->link;
@@ -205,6 +242,12 @@ void aMode(stList*ST, scList*SC) {
 					printf("\nGraduation: %s", manO.graduation);
 					printf("\nRegistration Date: %s", manO.regiDate);
 					printf("\nDrive: %s", manO.drive);
+					printf("\nmonitor: %s", objO.monitor);
+					printf("\nmonidater: %s", objO.monidate);
+					printf("\nmouse: %s", objO.mouse);
+					printf("\nmousdate: %s", objO.mousdate);
+					printf("\nkeyboard: %s", objO.keyboard);
+					printf("\nkeydate: %s", objO.keydate);
 					//학생 원래 정보 출력
 
 					printf("\nModify Obtional info\n");
@@ -222,6 +265,21 @@ void aMode(stList*ST, scList*SC) {
 					scanf("%s", manO.regiDate);
 					printf("\nDrive:");
 					scanf("%s", manO.drive);
+
+					printf("\nmodify pbject\n");
+					printf("\nmonitor: ");
+					scanf("%s", objO.monitor);
+					printf("\nmonidate: ");
+					scanf("%s", objO.monidate);
+					printf("\n,mouse: ");
+					scanf("%s", objO.mouse);
+					printf("\n,mousdate: ");
+					scanf("%s", objO.mousdate);
+					printf("\nkeyboard: ");
+					scanf("%s", objO.keyboard);
+					printf("\n,keydate: ");
+					scanf("%s", objO.keydate);//비품 수정
+
 					i = stModify(ST, manE, manO);
 
 					if (i == 0) {
@@ -259,9 +317,10 @@ void aMode(stList*ST, scList*SC) {
 		case '6': //view all schedule
 
 			if (SC->total == 0) {
-				printf("\nSchedule is empty");
+				fcPrint(SC);
 			} //스케줄 리스트가 비어있음
 			else {
+				fcPrint(SC);
 				scTemp = SC->head;
 				for (i = 0; i < SC->total; i++) {
 					printf("\n고유번호: %s", scTemp->info.num);
@@ -325,84 +384,6 @@ void aMode(stList*ST, scList*SC) {
 				if (i == 0) {
 					printf("\n해당 스케줄 없음");
 				}//고유번호 같은 스케줄 없음
-			}
-
-			do {
-				printf("\n0.exit");
-				printf("\nEnter: ");
-				scanf(" %c", &exit);
-			} while (exit != '0');
-			break;
-
-		case '9': //View all object
-
-			if (ST->total == 0) {
-				printf("\nstudent is empty");
-			}//학생 리스트 비어있음
-			else {
-				stTemp = ST->head;
-				for (i = 0; i < ST->total; i++) {
-					printf("\nname: %s", stTemp->Einfo.name);
-					printf("    num: %s", stTemp->Einfo.stnum);
-					printf("    moditor: %s", stTemp->Minfo.monitor);
-					printf("    mouse: %s", stTemp->Minfo.mouse);
-					printf("    keyboard: %s", stTemp->Minfo.keyboard);
-					stTemp = stTemp->link;
-					i++;
-				}
-			}//리스트의 모든 학생들의 비품 출력
-
-			do {
-				printf("\n0.exit");
-				printf("\nEnter: ");
-				scanf(" %c", &exit);
-			} while (exit != '0');
-			break;
-
-		case '10': //modify object
-
-			if (ST->total == 0) {
-				//학생리스트 비어있음
-				printf("\nStudent list is empty");
-			}
-			else {
-				printf("\n비품 수정할 학생의 학번 : ");
-				scanf("%s", num);
-				stTemp = ST->head;
-				for (i = 0; i < ST->total; i++) {
-					if (strcmp(stTemp->Einfo.stnum, num) == 0) {
-						strcpy(manE.name, stTemp->Einfo.name);
-						strcpy(manE.stnum, stTemp->Einfo.stnum);
-
-						strcpy(objO.monitor, stTemp->Minfo.monitor);
-						strcpy(objO.monidate, stTemp->Minfo.monidate);
-						strcpy(objO.mouse, stTemp->Minfo.mouse);
-						strcpy(objO.mousdate, stTemp->Minfo.mousdate);
-						strcpy(objO.keyboard, stTemp->Minfo.keyboard);
-						strcpy(objO.keydate, stTemp->Minfo.keydate);
-					}
-					stTemp = stTemp->link;
-				}
-				if (i >= ST->total) {
-					//그런학생 없어
-					printf("\n해당 학생 없음");
-				}
-				else {
-					printf("\nname: %s", manE.name);
-					printf("    stnum: %s", manE.stnum);
-					printf("    monitor: %s", objO.monitor);
-					printf("    mouse: %s", objO.mouse);
-					printf("    keyboard: %s", objO.keyboard); //원래 학생 정보 출력
-
-					printf("\nmodify pbject\n");
-					printf("\nmonitor: ");
-					scanf("%s", objO.monitor);
-					printf("\n,mouse: ");
-					scanf("%s", objO.mouse);
-					printf("\nkeyboard: ");
-					scanf("%s", objO.keyboard); //비품 수정
-					//i = obModify(ST, manE, objO);
-				} //반환된 학생 이름, 학번 출력 후 비품 수정
 			}
 
 			do {
