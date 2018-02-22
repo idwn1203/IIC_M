@@ -7,6 +7,10 @@ void mMode(stList* ST, scList* SC) {
 	char msw; //mMode switch
 	char exit;
 	int i;
+
+	stData manE;
+	stOpt manO;
+	obOpt objO;
 	stNode* stTemp = (stNode*)malloc(sizeof(stNode)); //student temp
 	stNode* stMan = (stNode*)malloc(sizeof(stNode)); //student
 	scNode* scTemp = (scNode*)malloc(sizeof(scNode)); //schedule temp
@@ -21,16 +25,17 @@ void mMode(stList* ST, scList* SC) {
 		printf("\n0. exit");
 		printf("\n1. View all students");
 		printf("\n2. View one student");
-		printf("\n3. View all schedules");
-		printf("\n4. View all object");
-		scanf(" %c", &msw);
+		printf("\n3. View all schedules"); \
+			scanf(" %c", &msw);
 
 		switch (msw) {
 		case '1': //view all students
 			if (ST->total == 0) {
+				ftPrint(ST);
 				printf("\nList is empty\n");
 			}
 			else {
+				ftPrint(ST);
 				stTemp = ST->head;
 				for (i = 0; i < ST->total; i++) {
 					printf("%d", i);
@@ -62,7 +67,24 @@ void mMode(stList* ST, scList* SC) {
 				stTemp = ST->head;
 				for (i = 0; i < ST->total; i++) {
 					if (strcmp(stTemp->Einfo.stnum, num) == 0) {
-						memcpy(stMan, stTemp, sizeof(stNode));
+						strcpy(manE.name, stTemp->Einfo.name);
+						strcpy(manE.stnum, stTemp->Einfo.stnum);
+
+						strcpy(manO.grade, stTemp->Oinfo.grade);
+						strcpy(manO.phone, stTemp->Oinfo.phone);
+						strcpy(manO.address, stTemp->Oinfo.address);
+						strcpy(manO.mail, stTemp->Oinfo.mail);
+						strcpy(manO.graduation, stTemp->Oinfo.graduation);
+						strcpy(manO.regiDate, stTemp->Oinfo.regiDate);
+						strcpy(manO.drive, stTemp->Oinfo.drive);
+
+						strcpy(objO.monitor, stTemp->Minfo.monitor);
+						strcpy(objO.monidate, stTemp->Minfo.monidate);
+						strcpy(objO.mouse, stTemp->Minfo.mouse);
+						strcpy(objO.mousdate, stTemp->Minfo.mousdate);
+						strcpy(objO.keyboard, stTemp->Minfo.keyboard);
+						strcpy(objO.keydate, stTemp->Minfo.keydate);
+
 						break;
 					}
 					stTemp = stTemp->link;
@@ -71,15 +93,22 @@ void mMode(stList* ST, scList* SC) {
 					printf("\n보려는 학생 없음");
 				}
 				else {
-					printf("\nName: %s", stMan->Einfo.name);
-					printf("\nStudent number: %s", stMan->Einfo.stnum);
-					printf("\nGrade: %s", stMan->Oinfo.grade);
-					printf("\nPhone number: %s", stMan->Oinfo.phone);
-					printf("\nAddress: %s", stMan->Oinfo.address);
-					printf("\nMail: %s", stMan->Oinfo.mail);
-					printf("\nGraduation: %s", stMan->Oinfo.graduation);
-					printf("\nRegistration Date: %s", stMan->Oinfo.regiDate);
-					printf("\nDrive: %s", stMan->Oinfo.drive);
+					printf("\nName: %s", manE.name);
+					printf("\nStudent number: %s", manE.stnum);
+					printf("\nGrade: %s", manO.grade);
+					printf("\nPhone number: %s", manO.phone);
+					printf("\nAddress: %s", manO.address);
+					printf("\nMail: %s", manO.mail);
+					printf("\nGraduation: %s", manO.graduation);
+					printf("\nRegistration Date: %s", manO.regiDate);
+					printf("\nDrive: %s", manO.drive);
+					printf("\n\nobject\n");
+					printf("\nmonitor: %s", objO.monitor);
+					printf("\nmonidate: %s", objO.monidate);
+					printf("\nmouse: %s", objO.mouse);
+					printf("\nmousdate: %s", objO.mousdate);
+					printf("\nkeyboard: %s", objO.keyboard);
+					printf("\nkeydate: %s", objO.keydate);
 				}
 			}
 
@@ -91,12 +120,15 @@ void mMode(stList* ST, scList* SC) {
 			break;
 
 
+
 		case '3': //view all schedules
 
 			if (SC->total == 0) {
+				fcPrint(SC);
 				printf("\nSchedule is empty");
 			} //스케줄 리스트가 비어있음
 			else {
+				fcPrint(SC);
 				scTemp = SC->head;
 				for (i = 0; i < SC->total; i++) {
 					printf("\n고유번호: %s", scTemp->info.num);
@@ -116,31 +148,6 @@ void mMode(stList* ST, scList* SC) {
 			} while (exit != '0');
 			break;
 
-
-		case '4': //view all object
-
-			if (ST->total == 0) {
-				printf("\nstudent is empty");
-			}//학생 리스트 비어있음
-			else {
-				stTemp = ST->head;
-				for (i = 0; i < ST->total; i++) {
-					printf("\nname: %s", stTemp->Einfo.name);
-					printf("    num: %s", stTemp->Einfo.stnum);
-					printf("    moditor: %s", stTemp->Minfo.monitor);
-					printf("    mouse: %s", stTemp->Minfo.mouse);
-					printf("    keyboard: %s", stTemp->Minfo.keyboard);
-					stTemp = stTemp->link;
-					i++;
-				}
-			}//리스트의 모든 학생들의 비품 출력
-
-			do {
-				printf("\n0.exit");
-				printf("\nEnter: ");
-				scanf(" %c", &exit);
-			} while (exit != '0');
-			break;
 		}//end switch
 	} while (msw != '0');
 

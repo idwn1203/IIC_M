@@ -18,9 +18,11 @@ void sMode(stList* ST, scList* SC) {
 		switch (msw) {
 		case '1': //view all students
 			if (ST->total == 0) {
+				ftPrint(ST);
 				printf("\nList is empty\n");
 			}
 			else {
+				ftPrint(ST);
 				stTemp = ST->head;
 				for (i = 0; i < ST->total; i++) {
 					printf("%d", i);
